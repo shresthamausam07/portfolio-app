@@ -1,26 +1,337 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  --construction-blue: #1e3a8a;
+  --construction-orange: #ea580c;
+  --construction-gray: #374151;
+  --construction-light: #f3f4f6;
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+  --popover: #1e293b;
+  --popover-foreground: #f8fafc;
+  --primary: #3b82f6;
+  --primary-foreground: #f8fafc;
+  --secondary: #334155;
+  --secondary-foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #334155;
+  --accent-foreground: #f8fafc;
+  --destructive: #ef4444;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: #3b82f6;
+  --chart-1: #3b82f6;
+  --chart-2: #8b5cf6;
+  --chart-3: #ec4899;
+  --chart-4: #f59e0b;
+  --chart-5: #10b981;
+  --sidebar: #1e293b;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #f8fafc;
+  --sidebar-accent: #334155;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: #334155;
+  --sidebar-ring: #3b82f6;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+  --popover: #1e293b;
+  --popover-foreground: #f8fafc;
+  --primary: #3b82f6;
+  --primary-foreground: #f8fafc;
+  --secondary: #334155;
+  --secondary-foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #334155;
+  --accent-foreground: #f8fafc;
+  --destructive: #ef4444;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: #3b82f6;
+  --chart-1: #3b82f6;
+  --chart-2: #8b5cf6;
+  --chart-3: #ec4899;
+  --chart-4: #f59e0b;
+  --chart-5: #10b981;
+  --sidebar: #1e293b;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #f8fafc;
+  --sidebar-accent: #334155;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: #334155;
+  --sidebar-ring: #3b82f6;
+}
+
+/* Construction Theme Styles */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
+/* Blueprint Grid Background */
+.blueprint-bg {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+
+/* Construction Line Accents */
+.construction-border {
+  position: relative;
+  border: 1px solid var(--border);
+}
+
+.construction-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--construction-blue), var(--construction-orange));
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.construction-border:hover::before {
+  opacity: 0.3;
+}
+
+/* Animated Text Gradient */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Floating Animation */
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Pulse Animation */
+.pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--construction-blue);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--construction-orange);
+}
+
+/* Construction Progress Bar */
+.construction-progress {
+  position: relative;
+  background: var(--construction-gray);
+  overflow: hidden;
+}
+
+.construction-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--construction-orange), transparent);
+  animation: construction-progress 2s linear infinite;
+}
+
+@keyframes construction-progress {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Blue Print Measurements */
+.measurement-lines::before,
+.measurement-lines::after {
+  content: '';
+  position: absolute;
+  background: var(--construction-blue);
+  opacity: 0.3;
+}
+
+.measurement-lines::before {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 10px;
+}
+
+.measurement-lines::after {
+  bottom: 0;
+  right: 0;
+  width: 2px;
+  height: 10px;
+}
+
+/* Particle Animation */
+.particle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  animation: particle-float 4s ease-out forwards;
+}
+
+@keyframes particle-float {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-50px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.5);
+  }
+}
+
+/* 3D Card Flip */
+.card-3d {
+  perspective: 1000px;
+}
+
+.card-3d-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover .card-3d-inner {
+  transform: rotateY(180deg);
+}
+
+.card-3d-front, .card-3d-back {
+  backface-visibility: hidden;
+}
+
+.card-3d-back {
+  transform: rotateY(180deg);
+}
+
+/* Line Clamping */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
 }
